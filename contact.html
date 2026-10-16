@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact · The Sail</title>
+    <meta name="description" content="Contact the sales, leasing and events team (demo)." />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header class="nav">
+      <a class="brand" href="/">THE SAIL</a>
+      <nav>
+        <a href="/residences.html">Residences</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html" aria-current="page">Contact</a>
+        <a class="pill" href="/contact.html?topic=viewing">Book a viewing</a>
+      </nav>
+    </header>
+    <section class="page-hero">
+      <canvas id="hero" aria-hidden="true"></canvas>
+      <div class="over">
+        <p class="eyebrow">Contact us</p>
+        <h1>Come and see the sail</h1>
+        <p class="lead">Ask about a residence, a rental or a hall, or book a private viewing.</p>
+      </div>
+    </section>
+    <main class="page">
+      <div class="split">
+        <div class="panel">
+          <p class="eyebrow">Sales gallery</p>
+          <h3>Jumeirah Beach Road, Dubai</h3>
+          <p>Open daily, 10:00 to 20:00</p>
+          <table>
+            <tr><th>Sales</th><td>+971 4 000 0000</td></tr>
+            <tr><th>Leasing</th><td>+971 4 000 0001</td></tr>
+            <tr><th>Events</th><td>+971 4 000 0002</td></tr>
+            <tr><th>Email</th><td>hello@thesail.example</td></tr>
+          </table>
+        </div>
+        <form id="contact-form" class="panel">
+          <p class="eyebrow">Send a message</p>
+          <label for="name">Name</label>
+          <input id="name" name="name" required autocomplete="name" />
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" />
+          <label for="topic">I'm interested in</label>
+          <select id="topic" name="topic">
+            <option value="buy">Buying a residence</option>
+            <option value="rent">Renting a residence</option>
+            <option value="hall">Renting a hall</option>
+            <option value="viewing">A private viewing</option>
+          </select>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4"></textarea>
+          <button class="cta" type="submit">Send</button>
+          <p id="sent" class="notice" role="status"></p>
+        </form>
+      </div>
+    </main>
+    <footer class="foot">
+      <p>Concept demo inspired by Burj Al Arab. Not affiliated with or endorsed by Jumeirah. All residences, prices and contacts are fictional.</p>
+    </footer>
+    <script type="module" src="/src/pages/contact.js"></script>
+  </body>
+</html>

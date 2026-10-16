@@ -1,28 +1,8 @@
 import * as THREE from 'three';
-import { EYE_HEIGHT } from '../config.js';
-import { SHOWCASE_Y } from '../building/building.js';
 import { state } from '../core/state.js';
 
-const E = EYE_HEIGHT;
-const A = SHOWCASE_Y + E;
-const v = (x, y, z) => new THREE.Vector3(x, y, z);
-
-// Shots a person could film. `cut` = hard cut (elevator, crossing the street), not a fly.
-const SHOTS = [
-  { p: 0.0, pos: v(0, E, 72), look: v(0, 6, 0) },
-  { p: 0.1, pos: v(8, E, 60), look: v(0, 10, 0) },
-  { p: 0.25, pos: v(24, E, 52), look: v(0, 18, 0) },
-  { p: 0.45, pos: v(40, E, 34), look: v(0, 24, 0) },
-  { p: 0.47, pos: v(7, E, 34), look: v(0, 2, 0), cut: true },
-  { p: 0.6, pos: v(1.2, E, 10.5), look: v(0, 1.9, 0) },
-  { p: 0.62, pos: v(7, A, 3), look: v(-12, A - 0.3, 0), cut: true },
-  { p: 0.78, pos: v(-5, A, 1), look: v(-20, A - 0.5, -2) },
-  { p: 0.85, pos: v(-12.3, A, 0), look: v(-60, A - 6, -8) },
-  { p: 0.87, pos: v(-32, E, 58), look: v(0, 18, 0), cut: true },
-  { p: 1.0, pos: v(-20, E, 52), look: v(0, 22, 0) },
-];
-
-export function createRig(camera, onCut) {
+// `shots`: [{ p, pos, look, cut? }] sorted by p. See camera/shots.js.
+export function createRig(camera, SHOTS, onCut) {
   const desiredPos = new THREE.Vector3();
   const desiredLook = new THREE.Vector3();
   const body = SHOTS[0].pos.clone();
@@ -54,7 +34,7 @@ export function createRig(camera, onCut) {
   return function update(dt) {
     const shot = sample(state.progress);
     const crossedCut =
-      (shot !== lastShot && SHOTS[Math.max(shot, lastShot)].cut) || desiredPos.distanceTo(body) > 40;
+      (shot !== lastShot && SHOTS[Math.max(shot, lastShot)].cut) || desiredPos.distanceTo(body) > 120;
     lastShot = shot;
 
     if (crossedCut) {

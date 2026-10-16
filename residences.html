@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Residences · The Sail</title>
+    <meta name="description" content="Floor plans, prices and availability for sale, rent and hall rental." />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header class="nav">
+      <a class="brand" href="/">THE SAIL</a>
+      <nav>
+        <a href="/residences.html" aria-current="page">Residences</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a class="pill" href="/contact.html?topic=viewing">Book a viewing</a>
+      </nav>
+    </header>
+    <section class="page-hero">
+      <canvas id="hero" aria-hidden="true"></canvas>
+      <div class="over">
+        <p class="eyebrow">Residences</p>
+        <h1>Floor plans &amp; availability</h1>
+        <p class="lead">Buy a residence, rent one by the month or night, or hire a hall for your event.</p>
+      </div>
+    </section>
+    <main class="page">
+      <div class="tabs" role="tablist">
+        <button role="tab" data-tab="buy" aria-selected="true">Buy</button>
+        <button role="tab" data-tab="rent">Rent</button>
+        <button role="tab" data-tab="halls">Hall rental</button>
+      </div>
+      <div id="units" class="units"></div>
+
+      <div class="split reveal">
+        <div class="panel stack">
+          <p class="eyebrow">Pick a level</p>
+          <div id="stack"></div>
+          <div id="floor-info" class="floor-info"></div>
+        </div>
+        <div class="panel">
+          <p class="eyebrow">Payment estimate</p>
+          <h3>What would it cost per month?</h3>
+          <label for="calc-price">Residence</label>
+          <select id="calc-price">
+            <option value="4850000">Gulf View One · AED 4,850,000</option>
+            <option value="8900000">Twin Sail Residence · AED 8,900,000</option>
+            <option value="16500000" selected>Royal Duplex · AED 16,500,000</option>
+            <option value="39000000">Sky Penthouse · AED 39,000,000</option>
+          </select>
+          <label for="calc-down">Down payment (%)</label>
+          <input id="calc-down" type="range" min="20" max="80" step="5" value="30" />
+          <label for="calc-years">Term (years)</label>
+          <input id="calc-years" type="range" min="5" max="25" step="1" value="20" />
+          <p id="calc-out" class="lead"></p>
+          <table>
+            <tr><th>Payment plan</th><td>20% booking · 40% during construction · 40% on handover</td></tr>
+            <tr><th>Service charge</th><td>AED 32 per m² per year</td></tr>
+            <tr><th>Handover</th><td>Q4 2028</td></tr>
+          </table>
+        </div>
+      </div>
+    </main>
+    <footer class="foot">
+      <p>Concept demo inspired by Burj Al Arab. Not affiliated with or endorsed by Jumeirah. All residences, prices and contacts are fictional.</p>
+    </footer>
+    <script type="module" src="/src/pages/residences.js"></script>
+  </body>
+</html>
