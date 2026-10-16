@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>From Ground to Home</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <canvas id="webgl" aria-hidden="true"></canvas>
+
+    <div class="hud" aria-live="polite">
+      <span class="hud-floor" id="hud-floor"></span>
+      <span class="hud-time" id="hud-time"></span>
+    </div>
+
+    <main id="story">
+      <section class="chapter" data-chapter="plot">
+        <p class="eyebrow">Dawn</p>
+        <h1>Al Noor Residences</h1>
+        <p>It starts as a quiet plot of land.</p>
+      </section>
+      <section class="chapter" data-chapter="sketch">
+        <p class="eyebrow">The idea</p>
+        <h2>One line on paper</h2>
+        <p>Every home begins as an architect's sketch.</p>
+      </section>
+      <section class="chapter tall" data-chapter="build">
+        <p class="eyebrow">Morning</p>
+        <h2>Fourteen floors, rising</h2>
+        <p>Concrete, then glass, catching the sun one pane at a time.</p>
+      </section>
+      <section class="chapter" data-chapter="walk">
+        <p class="eyebrow">Midday</p>
+        <h2>Walk up to your door</h2>
+        <p>Gardens, a shaded path, a lobby full of light.</p>
+      </section>
+      <section class="chapter tall" data-chapter="apartment">
+        <p class="eyebrow">Golden hour</p>
+        <h2>Your living room, your view</h2>
+        <p>Floor seven. West-facing. The balcony is where evenings end.</p>
+      </section>
+      <section class="chapter" data-chapter="night">
+        <p class="eyebrow">Night</p>
+        <h2>The building comes alive</h2>
+        <a class="cta" href="#">Book a visit</a>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+SESSION: Claude Code (claude.ai cloud project "Three.js Application") · 2026-10-16 · research → concept → repo → starter → context sync
+
+MY REQUESTS (Usman, verbatim):
+1. "On this projects . We will only build threejs application. Now we need to research on things , what type of animated threejs interactive website can we build where think as a motion graphic designer and the animation would be like , on scrolldown and interactive."
+2. (Picked concept G) "G. Scroll-built architecture / real estate · Difficulty 3 ... We can work on this , where i can target the realestate market on linkedin . I think this could be a hit. But we need a much more imaginative thinking of how to make this , and it should look super natural / human natural vision ."
+3. (On the repo line of the concept doc) "we will create a new repo named : realestate-threejs"
+4. "done at : https://github.com/Matanza00/realestate-threejs"
+5. "write all the prompt and other things where i'm shifting this project from claude code to visual code where i'm using claude chat but on different account. So i don't want anything to miss out from my Claude code and Claude chat. I want to sync them , where they could only be sync via a document folder knowing all the things Claude Code did and all the things Claude Chat did. Can we do something like this where we create a txt folder and all the chat from claude code is saved there. And all the chat from Claude Chat is also saved there. They both know the full context."
+
+EARLIER CONTEXT (previous thread in the same project):
+- Installed the freshtechbro/claudedesignskills bundles (core-3d-animation, extended-3d-scroll,
+  animation-components, authoring-motion, meta-skills) and Graphify. Notes: context/research/claude-setup.md.
+- Usman wants low token and context use.
+
+WHAT WE DID:
+1. Research: 13 scroll + interaction Three.js site concepts, motion principles, build order,
+   reusable blocks, performance rules → context/research/threejs-site-concepts.md
+2. Creative direction for concept G, "From Ground to Home" → context/research/real-estate-scroll-concept.md
+   - Human-vision rules: eye height 1.6 m, ~45° FOV, walking pace, gaze leads body, head bob,
+     focus follows attention, auto-exposure, real sun, small imperfections.
+   - 6 chapters: dawn plot, architect's sketch, floors pour up, walk to door, apartment at golden hour, night.
+   - Interactions: look around, click floor for plan + prices, sun slider, style toggle, measure, "stand here".
+   - LinkedIn: live site + 30–45 s vertical video from the scroll timeline + 5-slide carousel; white-label template.
+3. Claude could not create GitHub repos from the cloud session; Usman created Matanza00/realestate-threejs.
+   It is saved to the claude.ai project. Pushing needs the Claude GitHub App installed on the repo.
+4. Milestone 1 starter built (Vite 8, three 0.186, gsap 3.15, lenis 1.3):
+   - All 6 chapters play on scroll with placeholder geometry: sky + sun by hour, sketch lines draw on,
+     floors pour up (shader), trees grow along the path, door walk-up, floor-7 room, balcony, windows light at night.
+   - Camera rig: shot list with hard cuts (blink), damped body/gaze, head bob, pointer look-around.
+   - Verified with `vite build` and headless Chromium screenshots at 8 scroll points.
+5. Shared context system (this folder): README, PROJECT_CONTEXT.md, PROMPTS.md, logs,
+   scripts/export-claude-code-log.mjs + SessionEnd hook in .claude/settings.json, CLAUDE.md rules.
+
+DECISIONS:
+- Only Three.js applications in this project.
+- First product: concept G real estate site aimed at LinkedIn.
+- Defaults: Dubai sun, 14 floors, showcase unit floor 7 west-facing (all in src/config.js).
+- Sync between Claude Code and Claude Chat happens only through context/ in the repo.
+
+OPEN QUESTIONS:
+- Install the Claude GitHub App on realestate-threejs so the cloud session can push
+  (https://github.com/apps/claude/installations/select_target).
+- Real building model / client: none yet, placeholders in use.
+
+NEXT: milestone 2 (real sun with suncalc, time-of-day polish). See PROJECT_CONTEXT.md.
