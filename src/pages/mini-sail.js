@@ -30,7 +30,7 @@ export function miniSail(canvas, { hour = 17.5, night = 0, distance = 520 } = {}
   const timer = new THREE.Timer();
   renderer.setAnimationLoop((time) => {
     timer.update(time);
-    const t = timer.getElapsed();
+    const t = (time ?? performance.now()) / 1000;
     const a = 0.9 + (reduced ? 0 : t * 0.03);
     camera.position.set(Math.sin(a) * distance, 30 + window.scrollY * 0.08, Math.cos(a) * distance);
     camera.lookAt(0, 120 - window.scrollY * 0.05, -10);

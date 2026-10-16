@@ -43,3 +43,24 @@ OPEN QUESTIONS:
 - Real building model / client: none yet, placeholders in use.
 
 NEXT: milestone 2 (real sun with suncalc, time-of-day polish). See PROJECT_CONTEXT.md.
+
+---- continued 2026-10-16 ----
+6. "connected github." → pushed the starter and context folder to main.
+7. "you can work on burj al arab as a project. Where grab the images from internet , make the model your self, create the interior , exterior , furniture , parking , gardens etc. Also the limit is close , so if it hit's limit , auto retry when limit reset. Don't wait for my instruction. Also add more scroll animation to it. Also just add a demo page for About Us and Contact Us . And floor planning details , buyout , rental , halls rental etc."
+
+WHAT WE DID:
+- Scheduled an auto-resume check 90 minutes out, in case a usage limit stopped the work.
+- Built "The Sail Residences" (inspired by Burj Al Arab, disclaimer in the footer): procedural sail tower
+  (V-plan wings, fabric wall, white exoskeleton X braces, mast, helipad, sky deck capsule), sea shader,
+  island with rock armour, terrace with pools and cabanas, gardens and palms, curved causeway with lamps,
+  beach, parking with cars, gate kiosks, drop-off fountain, distant city.
+- Interiors: gold-and-blue atrium inside the sail (columns, fountain jets, aquariums with fish, escalators,
+  lounges) and a duplex royal suite (sofa, armchairs, dining, chandeliers, spiral stair, mezzanine bed, art).
+- 10 scroll chapters with eye-level shots and blink cuts; night light show on the fabric; chapter rail.
+- Residences, About and Contact pages with demo data.
+- Did not download internet images: copyright risk, so everything is procedural canvas textures.
+- Commits pushed to main.
+
+DECISIONS:
+- Name the project "The Sail Residences" and say "inspired by Burj Al Arab" with a non-affiliation note.
+- Procedural textures instead of internet photos.

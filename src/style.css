@@ -108,3 +108,4 @@ th { color: var(--ink); font-weight: 500; }
   .split { grid-template-columns: 1fr; }
   .rail { display: none; }
 }
+.page-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8, 12, 20, 0.7), rgba(8, 12, 20, 0.15) 60%, transparent), linear-gradient(transparent 60%, var(--bg)); pointer-events: none; }

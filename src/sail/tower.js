@@ -11,6 +11,9 @@ const { topS, floors, deck, height: H } = SAIL;
 
 export const TOWER_TOP = topS * H + deck;
 
+// Night light show palette, cycled slowly.
+const SHOW = [0x4f7dff, 0x9b5cff, 0xf2b84b, 0xfff4e0, 0x37c6c0].map((c) => new THREE.Color(c));
+
 export function createTower(scene) {
   const group = new THREE.Group();
   group.position.y = deck;
@@ -23,6 +26,7 @@ export function createTower(scene) {
   const rows = Array.from({ length: ROWS + 1 }, (_, j) => plan((j / ROWS) * topS));
 
   // Wings: outer face white + glass, inner (atrium) face gold + blue.
+  // The loft winds inward, so the outside is the back face.
   const wingRows = (side) =>
     rows.map((p) => {
       const tip = side < 0 ? p.left : p.right;
@@ -33,8 +37,8 @@ export function createTower(scene) {
     });
   const outerTex = tex.wingOuter();
   const innerTex = tex.wingInner();
-  const outer = pour(new THREE.MeshStandardMaterial({ map: outerTex, roughness: 0.35, metalness: 0.2, side: THREE.FrontSide }));
-  const inner = pour(new THREE.MeshStandardMaterial({ map: innerTex, roughness: 0.4, metalness: 0.5, side: THREE.BackSide, emissive: 0x3a2a10, emissiveIntensity: 0.4 }));
+  const outer = pour(new THREE.MeshStandardMaterial({ map: outerTex, roughness: 0.35, metalness: 0.2, side: THREE.BackSide, emissive: 0xffc890, emissiveMap: tex.wingWindows(), emissiveIntensity: 0 }));
+  const inner = pour(new THREE.MeshStandardMaterial({ map: innerTex, roughness: 0.4, metalness: 0.5, side: THREE.FrontSide, emissive: 0x3a2a10, emissiveIntensity: 0.4 }));
   for (const side of [-1, 1]) {
     const geo = loft(wingRows(side), floors * topS, 10);
     const o = new THREE.Mesh(geo, outer);
@@ -50,8 +54,11 @@ export function createTower(scene) {
   group.add(fabricPivot);
   const fabricRows = rows.map((p) => Array.from({ length: FABRIC_COLS + 1 }, (_, i) => fabricPoint(p, i / FABRIC_COLS)));
   const fabricGeo = loft(fabricRows, 14, 1);
+  const fabricTex = tex.fabric();
+  const glowTex = tex.fabricGlow();
+  glowTex.repeat.set(1, 1 / 14);
   const fabricMat = pour(
-    new THREE.MeshStandardMaterial({ map: tex.fabric(), roughness: 0.75, side: THREE.DoubleSide, emissive: 0xffffff, emissiveIntensity: 0 }),
+    new THREE.MeshStandardMaterial({ map: fabricTex, emissiveMap: glowTex, roughness: 0.75, side: THREE.DoubleSide, emissive: 0xffffff, emissiveIntensity: 0 }),
     uFabric,
   );
   const fabric = new THREE.Mesh(fabricGeo, fabricMat);
@@ -139,9 +146,11 @@ export function createTower(scene) {
     },
     // The fabric becomes a slow colour-shifting light show at night.
     setNight(t, time) {
-      const c = new THREE.Color().setHSL((time * 0.02) % 1, 0.65, 0.55);
-      fabricMat.emissive.copy(c);
-      fabricMat.emissiveIntensity = t * 0.9;
+      const k = (time * 0.08) % SHOW.length;
+      const i = Math.floor(k);
+      fabricMat.emissive.copy(SHOW[i]).lerp(SHOW[(i + 1) % SHOW.length], THREE.MathUtils.smoothstep(k - i, 0.6, 1));
+      fabricMat.emissiveIntensity = t * 0.7;
+      outer.emissiveIntensity = t * 0.9;
       deckMat.emissiveIntensity = 0.2 + t * 1.5;
       inner.emissiveIntensity = 0.4 + t * 0.8;
     },

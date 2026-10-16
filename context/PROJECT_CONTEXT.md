@@ -1,6 +1,6 @@
 # Project context: realestate-threejs
 
-_Last updated: 2026-10-16 by Claude Code (cloud project thread)._
+_Last updated: 2026-10-16 by Claude Code (cloud project thread), after the sail build._
 
 ## Goal
 Build Three.js applications only. First product: a scroll-driven, interactive real
@@ -26,27 +26,28 @@ through LinkedIn. It must look natural, like human vision, not like a video game
 - Defaults (changeable): sun location Dubai; 14-floor placeholder tower; showcase unit on floor 7, west-facing.
 - Stack: Vite + vanilla Three.js + GSAP ScrollTrigger + Lenis. Postprocessing comes in milestone 4.
 - Token budget: Graphify for code questions, one module per concern, edit one module at a time.
+- 2026-10-16: Usman asked to build a Burj Al Arab project: model, interior, exterior, furniture, parking,
+  gardens, more scroll animation, demo About/Contact pages, floor plans with buy, rent and hall rental.
+  Built as "The Sail Residences", a concept study *inspired by* Burj Al Arab, with a footer disclaimer
+  (not affiliated with Jumeirah; units, prices, contacts fictional). Model and textures are procedural
+  (no downloaded photos, to avoid copyright issues and keep the repo light).
 
 ## Code map
-- `src/config.js` chapters (scroll ranges + hours), building size, location.
-- `src/core/` renderer (AgX tone mapping, 45° FOV), shared `state`.
-- `src/scroll/scroll.js` Lenis + ScrollTrigger → `state.target`.
-- `src/sky/sky.js` physical Sky, sun from hour, eye-adaptation exposure.
-- `src/building/` floors, rising "pour" shader (`pour.js`), sketch lines, night windows, placeholder room.
-- `src/camera/rig.js` shot list (`SHOTS`), body/gaze springs, hard cuts with a blink, head bob, pointer look-around.
-- `src/world/world.js` ground, plot, path, growing trees, distant city, fog.
-- `src/ui/hud.js` floor counter, construction quarter, clock.
+See the Layout section in `CLAUDE.md` (kept there so it is loaded every session).
 
 ## Status
-- Milestone 1 (starter) done: all 6 chapters play on scroll with placeholder geometry.
-  Checked in headless Chromium at 8 scroll points.
-- Repo pushed to GitHub (main). Claude GitHub App installed, cloud sessions can push.
+- Milestone 1 starter done, then replaced by the sail experience (old generic tower is in git history, commit c7d57a9).
+- Sail experience: 10 scroll chapters (dawn, sketch, rising, sail unfurls, arrival over the causeway,
+  atrium, royal duplex suite, sky deck, terrace, night light show), chapter rail, split-text headlines,
+  counters, pinned horizontal amenities strip.
+- Pages: Residences (Buy / Rent / Hall rental tabs, SVG floor plans, level picker, payment estimate),
+  About, Contact (demo form). Each has a small live 3D hero of the sail.
+- Checked in headless Chromium (screenshots of every chapter and page). Known rough edges: midday shots
+  are bright and low-contrast; the suite is bright in afternoon sun; the level picker and calculator fade in on scroll.
 
-## Next steps (milestones from the concept doc)
-2. Sky + real sun (suncalc, real lat/long/date) and time of day polish.
-3. Fat-line pencil sketch draw-on with paper grain; better pour edge.
-4. Eye-level camera polish: depth of field auto-focus, luminance-based auto-exposure.
-5. Real interior (Blender glTF, baked lighting) + furniture style toggle.
-6. Floor plan drawer, sun slider, measure tool.
-7. Video capture mode for LinkedIn exports.
-8. Performance pass, mobile tier, deploy.
+## Next steps
+1. Real sun position with suncalc (lat/long/date) and contrast grading for midday chapters.
+2. Depth of field auto-focus and luminance-based auto-exposure (postprocessing).
+3. Swap procedural parts for Blender glTF where it matters (suite furniture, fabric), KTX2 textures.
+4. Video capture mode for LinkedIn exports (deterministic scroll playback).
+5. Performance pass, mobile tier, deploy (Vercel or Netlify).

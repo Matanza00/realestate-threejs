@@ -7,9 +7,9 @@ export function createSky(scene) {
   const sky = new Sky();
   sky.scale.setScalar(3000);
   const u = sky.material.uniforms;
-  u.turbidity.value = 6;
+  u.turbidity.value = 2.2;
   u.rayleigh.value = 1.6;
-  u.mieCoefficient.value = 0.005;
+  u.mieCoefficient.value = 0.003;
   u.mieDirectionalG.value = 0.8;
   scene.add(sky);
 
@@ -35,6 +35,22 @@ export function createSky(scene) {
   const hemi = new THREE.HemisphereLight(0xbfd6ff, 0x5a4a35, 0.6);
   scene.add(hemi);
 
+  const nightSky = (() => {
+    const c = document.createElement('canvas');
+    c.width = 2;
+    c.height = 256;
+    const g = c.getContext('2d');
+    const grd = g.createLinearGradient(0, 0, 0, 256);
+    grd.addColorStop(0, '#05070f');
+    grd.addColorStop(0.7, '#101a33');
+    grd.addColorStop(1, '#2a2440');
+    g.fillStyle = grd;
+    g.fillRect(0, 0, 2, 256);
+    const t = new THREE.CanvasTexture(c);
+    t.colorSpace = THREE.SRGBColorSpace;
+    return t;
+  })();
+
   const sunDir = new THREE.Vector3();
   const warm = new THREE.Color(0xffa45c);
   const noon = new THREE.Color(0xfff4e6);
@@ -51,13 +67,15 @@ export function createSky(scene) {
 
     sun.position.copy(sunDir).multiplyScalar(700).add(sun.target.position);
     const day = THREE.MathUtils.smoothstep(elevation, -4, 12);
-    sun.intensity = 3.2 * THREE.MathUtils.smoothstep(elevation, -2, 6);
+    sun.intensity = 1.5 * THREE.MathUtils.smoothstep(elevation, -2, 6);
     sun.color.copy(warm).lerp(noon, THREE.MathUtils.smoothstep(elevation, 5, 35));
-    hemi.intensity = 0.15 + 0.5 * day;
-    u.rayleigh.value = 0.4 + 1.4 * day;
+    hemi.intensity = 0.08 + 0.22 * day;
+    u.rayleigh.value = 0.4 + 0.9 * day;
+    sky.visible = day > 0.03;
+    scene.background = sky.visible ? null : nightSky;
 
     // Eye adaptation: exposure opens up as the light drops, like a pupil.
-    renderer.toneMappingExposure = THREE.MathUtils.lerp(1.3, 0.9, day);
+    renderer.toneMappingExposure = THREE.MathUtils.lerp(1.0, 0.62, day);
 
     if (Math.abs(hour - envHour) > 0.35) {
       envHour = hour;
@@ -65,7 +83,7 @@ export function createSky(scene) {
       envTarget?.dispose();
       envTarget = pmrem.fromScene(envScene, 0, 1, 4000);
       scene.environment = envTarget.texture;
-      scene.environmentIntensity = 0.25 + 0.75 * day;
+      scene.environmentIntensity = 0.12 + 0.3 * day;
     }
     return { elevation, day };
   }

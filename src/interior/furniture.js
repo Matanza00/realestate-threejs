@@ -6,8 +6,8 @@ import { marble } from '../sail/textures.js';
 // origin sits on the floor at its centre.
 export const M = {
   velvet: new THREE.MeshStandardMaterial({ color: 0x1f3a6e, roughness: 0.9 }),
-  cream: new THREE.MeshStandardMaterial({ color: 0xf1e7d6, roughness: 0.9 }),
-  gold: new THREE.MeshStandardMaterial({ color: 0xd8ad55, roughness: 0.25, metalness: 1 }),
+  cream: new THREE.MeshStandardMaterial({ color: 0xd8c6a8, roughness: 0.9 }),
+  gold: new THREE.MeshStandardMaterial({ color: 0xc9953a, roughness: 0.35, metalness: 0.75 }),
   wood: new THREE.MeshStandardMaterial({ color: 0x6e4a2f, roughness: 0.55 }),
   leaf: new THREE.MeshStandardMaterial({ color: 0x3f6b35, roughness: 0.8 }),
   pot: new THREE.MeshStandardMaterial({ color: 0xe9e3d8, roughness: 0.6 }),

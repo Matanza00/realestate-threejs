@@ -29,6 +29,19 @@ export const wingOuter = () =>
     for (let x = 0; x < w; x += 32) g.fillRect(x, 0, 3, h);
   });
 
+// Night windows for the outer wing: lit panes in random rooms, same tiling as wingOuter.
+export const wingWindows = () =>
+  canvasTexture(256, 64, (g, w, h) => {
+    g.fillStyle = '#000';
+    g.fillRect(0, 0, w, h);
+    for (let x = 0; x < w; x += 32) {
+      if (Math.random() < 0.55) {
+        g.fillStyle = `rgba(255,${200 + Math.random() * 40},${140 + Math.random() * 60},${0.5 + Math.random() * 0.5})`;
+        g.fillRect(x + 4, h * 0.42, 24, h * 0.5);
+      }
+    }
+  });
+
 // Atrium side of the wings: gold balcony fronts over deep blue.
 export const wingInner = () =>
   canvasTexture(256, 64, (g, w, h) => {
@@ -56,6 +69,25 @@ export const fabric = () =>
     grd.addColorStop(1, 'rgba(0,0,0,0.06)');
     g.fillStyle = grd;
     g.fillRect(0, 0, w, h);
+  });
+
+// Fabric glow at night: brighter low and in the middle, fading to the top.
+export const fabricGlow = () =>
+  canvasTexture(128, 256, (g, w, h) => {
+    const v = g.createLinearGradient(0, 0, 0, h);
+    v.addColorStop(0, '#ffffff');
+    v.addColorStop(0.6, '#9a9a9a');
+    v.addColorStop(1, '#3a3a3a');
+    g.fillStyle = v;
+    g.fillRect(0, 0, w, h);
+    const r = g.createLinearGradient(0, 0, w, 0);
+    r.addColorStop(0, 'rgba(0,0,0,0.55)');
+    r.addColorStop(0.5, 'rgba(0,0,0,0)');
+    r.addColorStop(1, 'rgba(0,0,0,0.55)');
+    g.fillStyle = r;
+    g.fillRect(0, 0, w, h);
+    g.fillStyle = 'rgba(0,0,0,0.35)';
+    for (let y = 0; y < h; y += h / 14) g.fillRect(0, y, w, 2);
   });
 
 export const marble = (base = '#efe9df', vein = 'rgba(120,110,100,0.25)') =>
@@ -111,7 +143,7 @@ export const parking = () =>
 
 export const sand = () =>
   canvasTexture(256, 256, (g, w, h) => {
-    g.fillStyle = '#e6d3ad';
+    g.fillStyle = '#b39a6e';
     g.fillRect(0, 0, w, h);
     for (let i = 0; i < 4000; i++) {
       g.fillStyle = `rgba(${150 + Math.random() * 80},${130 + Math.random() * 60},90,0.12)`;

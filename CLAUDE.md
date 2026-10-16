@@ -6,15 +6,18 @@ hour, the building at night. Everything should read as human vision (eye height
 1.6 m, walking pace, ~45° vertical FOV, damped gaze).
 
 ## Layout (one concern per module)
-- `src/main.js` wires modules and runs the render loop.
-- `src/config.js` chapters, building dimensions, location. Change values here first.
-- `src/core/` renderer, scene, shared state (`state.progress` 0..1).
-- `src/scroll/` Lenis + ScrollTrigger, writes `state.progress`.
-- `src/sky/` physical sky, sun, time of day from progress.
-- `src/building/` placeholder floors, rising-pour shader, sketch wireframe, night windows.
-- `src/camera/` eye-level rig: camera keyframes per chapter, body + gaze springs, head bob.
-- `src/world/` ground, trees, fog.
-- `src/ui/` DOM HUD (floor counter, chapter text).
+- `index.html` + `src/main.js`: the scroll story. Wires modules, runs the render loop. `window.__sail` exposes camera/state for browser tests.
+- `src/config.js` chapters (scroll range, hour, indoor exposure), sail dimensions, island, location.
+- `src/core/` renderer (ACES, 45° FOV), shared `state` (progress 0..1).
+- `src/scroll/` Lenis + ScrollTrigger -> `state.target`.
+- `src/sky/` physical sky, sun by hour, env map, night sky gradient, eye-adaptation exposure.
+- `src/sail/` the sail tower: `shape.js` (profile + plan math), `tower.js` (wings, fabric, exoskeleton, mast, helipad, sky deck, sketch lines, light show), `textures.js` (procedural canvas textures).
+- `src/shaders/pour.js` rising-height reveal used by the build chapter.
+- `src/world/world.js` sea shader, island, rocks, terrace + pools, causeway, beach, parking + cars, palms, city, fountain.
+- `src/interior/` `furniture.js` kit, `atrium.js`, `suite.js` (staged duplex, shown only in its chapter).
+- `src/camera/` `shots.js` (shot list per chapter, cuts) and `rig.js` (springs, head bob, look-around).
+- `src/ui/` HUD, chapter rail, split-text/counter/horizontal-strip animations.
+- `residences.html`, `about.html`, `contact.html` + `src/pages/` (demo data, mini hero scene, page logic).
 
 ## Token budget
 - Use the installed design skills (threejs-webgl, gsap-scrolltrigger, web3d-integration-patterns,

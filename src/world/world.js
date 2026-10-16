@@ -6,7 +6,7 @@ const dummy = new THREE.Object3D();
 const rand = (a, b) => a + Math.random() * (b - a);
 
 export function createWorld(scene) {
-  scene.fog = new THREE.Fog(0xcfd8e0, 300, 2600);
+  scene.fog = new THREE.Fog(0xcfd8e0, 700, 4200);
   const sea = createSea(scene);
   createIsland(scene);
   const causeway = createCauseway(scene);
@@ -36,7 +36,7 @@ export function createWorld(scene) {
 function createSea(scene) {
   const geo = new THREE.PlaneGeometry(6000, 6000, 200, 200);
   geo.rotateX(-Math.PI / 2);
-  const mat = new THREE.MeshStandardMaterial({ color: 0x2a6f86, roughness: 0.12, metalness: 0.1, envMapIntensity: 1.2 });
+  const mat = new THREE.MeshStandardMaterial({ color: 0x1d5f78, roughness: 0.18, metalness: 0.1, envMapIntensity: 0.6 });
   const uniforms = { uTime: { value: 0 } };
   mat.onBeforeCompile = (shader) => {
     shader.uniforms.uTime = uniforms.uTime;
@@ -201,7 +201,7 @@ function createShore(scene) {
   lotTex.repeat.set(6, 3);
   const lot = new THREE.Mesh(new THREE.PlaneGeometry(120, 60), new THREE.MeshStandardMaterial({ map: lotTex, roughness: 0.9 }));
   lot.rotation.x = -Math.PI / 2;
-  lot.position.set(90, 0.45, SHORE_Z + 60);
+  lot.position.set(240, 0.45, SHORE_Z + 70);
   lot.receiveShadow = true;
   scene.add(lot);
 
@@ -212,8 +212,8 @@ function createShore(scene) {
   for (let row = 0; row < 6 && n < 70; row++) {
     for (let k = 0; k < 18 && n < 70; k++) {
       if (Math.random() < 0.3) continue;
-      const x = 90 - 56 + k * 6.6;
-      const z = SHORE_Z + 60 - 25 + row * 10 + (row % 2 ? -2 : 2);
+      const x = 240 - 56 + k * 6.6;
+      const z = SHORE_Z + 70 - 25 + row * 10 + (row % 2 ? -2 : 2);
       dummy.rotation.set(0, row % 2 ? 0 : Math.PI, 0);
       dummy.scale.setScalar(1);
       dummy.position.set(x, 0.85, z);
@@ -231,10 +231,13 @@ function createShore(scene) {
   scene.add(bodies, cabins);
 
   // Gatehouse at the start of the causeway.
-  const gate = new THREE.Mesh(new THREE.BoxGeometry(18, 5, 8), new THREE.MeshStandardMaterial({ color: 0xece6da, roughness: 0.7 }));
-  gate.position.set(30, 2.9, SHORE_Z + 18);
-  gate.castShadow = true;
-  scene.add(gate);
+  const gateMat = new THREE.MeshStandardMaterial({ color: 0xece6da, roughness: 0.7 });
+  for (const x of [-2, 22]) {
+    const kiosk = new THREE.Mesh(new THREE.BoxGeometry(4, 3.4, 5), gateMat);
+    kiosk.position.set(x, 2.1, SHORE_Z + 22);
+    kiosk.castShadow = true;
+    scene.add(kiosk);
+  }
 }
 
 // Palms on the island, along the causeway gate and the beach; they grow in for the gardens chapter.

@@ -50,15 +50,15 @@ export function createAtrium(scene) {
   const fish = [];
   for (const x of [-7, 7]) {
     const tank = new THREE.Mesh(new THREE.BoxGeometry(2.4, 6, 18), tankMat);
-    tank.position.set(x, 3, 6);
+    tank.position.set(x * 2.3, 3, -18);
     const esc = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.6, 20), M.gold);
-    esc.position.set(x * 0.6, 4, 6);
+    esc.position.set(x * 1.9, 4, -18);
     esc.rotation.x = -0.32;
     g.add(tank, esc);
     for (let k = 0; k < 14; k++) {
       const f = new THREE.Mesh(new THREE.ConeGeometry(0.15, 0.5, 6), fishMat);
       f.rotation.x = Math.PI / 2;
-      f.userData = { x, y: 1 + Math.random() * 4, speed: 0.4 + Math.random() * 0.6, phase: Math.random() * 10 };
+      f.userData = { x: x * 2.3, y: 1 + Math.random() * 4, speed: 0.4 + Math.random() * 0.6, phase: Math.random() * 10 };
       fish.push(f);
       g.add(f);
     }
@@ -100,7 +100,7 @@ export function createAtrium(scene) {
       jets.forEach((j, i) => (j.scale.y = 3 + 4 * (0.5 + 0.5 * Math.sin(time * 1.6 + i * 0.8))));
       fish.forEach((f) => {
         const u = f.userData;
-        const z = 6 + Math.sin(time * u.speed + u.phase) * 8;
+        const z = -18 + Math.sin(time * u.speed + u.phase) * 8;
         f.position.set(u.x + Math.sin(time + u.phase) * 0.6, u.y + Math.sin(time * 0.7 + u.phase) * 0.3, z);
         f.rotation.z = Math.cos(time * u.speed + u.phase) > 0 ? 0 : Math.PI;
       });

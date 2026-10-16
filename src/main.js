@@ -28,6 +28,7 @@ const suite = createSuite(scene);
 const fade = createFade();
 const rig = createRig(camera, buildShots({ tower, causeway: world.causeway }), fade);
 const lenis = initScroll();
+window.__sail = { camera, renderer, state, scene };
 initText();
 initRail(lenis);
 
@@ -51,7 +52,7 @@ const timer = new THREE.Timer();
 renderer.setAnimationLoop((time) => {
   timer.update(time);
   const dt = Math.min(timer.getDelta(), 0.05);
-  const t = timer.getElapsed();
+  const t = (time ?? performance.now()) / 1000;
   state.progress = THREE.MathUtils.damp(state.progress, state.target, state.reducedMotion ? 30 : 6, dt);
   const p = state.progress;
   const chapter = chapterAt(CHAPTERS, p);

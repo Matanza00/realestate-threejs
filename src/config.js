@@ -6,11 +6,11 @@ export const CHAPTERS = [
   { id: 'build', start: 0.17, end: 0.3, hour: 8.5, label: 'Rising' },
   { id: 'sail', start: 0.3, end: 0.38, hour: 10.0, label: 'The sail' },
   { id: 'arrive', start: 0.38, end: 0.48, hour: 11.5, label: 'Arrival' },
-  { id: 'atrium', start: 0.48, end: 0.57, hour: 12.5, label: 'Atrium', exposure: 1.9 },
-  { id: 'suite', start: 0.57, end: 0.7, hour: 15.0, label: 'Royal suite', exposure: 1.5 },
+  { id: 'atrium', start: 0.48, end: 0.57, hour: 12.5, label: 'Atrium', exposure: 1.35 },
+  { id: 'suite', start: 0.57, end: 0.7, hour: 15.0, label: 'Royal suite', exposure: 0.8 },
   { id: 'sky', start: 0.7, end: 0.78, hour: 16.5, label: 'Sky deck' },
-  { id: 'terrace', start: 0.78, end: 0.88, hour: 17.8, label: 'Terrace' },
-  { id: 'night', start: 0.88, end: 1.0, hour: 20.5, label: 'Night' },
+  { id: 'terrace', start: 0.78, end: 0.88, hour: 16.9, label: 'Terrace' },
+  { id: 'night', start: 0.88, end: 1.0, hour: 19.9, label: 'Night' },
 ];
 
 // "The Sail": a concept study inspired by Burj Al Arab. Metres.

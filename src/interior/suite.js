@@ -3,8 +3,10 @@ import { marble } from '../sail/textures.js';
 import { M, sofa, armchair, coffeeTable, diningSet, bed, floorLamp, plant, chandelier, rug, spiralStairs, artwork } from './furniture.js';
 
 // Duplex sea-view suite, staged at the height of floor 25 with its window wall
-// facing west (-x) over the Gulf. Local origin = centre of the lower floor.
-export const SUITE_ORIGIN = new THREE.Vector3(-760, 120, 40);
+// facing west (-x) over the Gulf, away from the tower. Shown only in its chapter.
+// Local origin = centre of the lower floor.
+// Kept inside the sun's shadow frustum so walls and ceiling block the light.
+export const SUITE_ORIGIN = new THREE.Vector3(-185, 120, 70);
 const W = 18;
 const D = 14;
 const H = 7.2;
@@ -15,10 +17,10 @@ export function createSuite(scene) {
   g.position.copy(SUITE_ORIGIN);
   scene.add(g);
 
-  const floorTex = marble('#f2ece3', 'rgba(160,130,90,0.22)');
+  const floorTex = marble('#d6c6ad', 'rgba(110,85,55,0.3)');
   floorTex.repeat.set(4, 3);
   const floorMat = new THREE.MeshStandardMaterial({ map: floorTex, roughness: 0.1 });
-  const wallMat = new THREE.MeshStandardMaterial({ color: 0xefe6d6, roughness: 0.85 });
+  const wallMat = new THREE.MeshStandardMaterial({ color: 0xd9cbb4, roughness: 0.85 });
   const box = (w, h, d, mat, x, y, z) => {
     const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
     m.position.set(x, y, z);
