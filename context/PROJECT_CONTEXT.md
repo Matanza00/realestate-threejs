@@ -40,7 +40,7 @@ through LinkedIn. It must look natural, like human vision, not like a video game
 ## Status
 - Milestone 1 (starter) done: all 6 chapters play on scroll with placeholder geometry.
   Checked in headless Chromium at 8 scroll points.
-- Blocker: the Claude GitHub App must be installed on the repo before the cloud session can push.
+- Repo pushed to GitHub (main). Claude GitHub App installed, cloud sessions can push.
 
 ## Next steps (milestones from the concept doc)
 2. Sky + real sun (suncalc, real lat/long/date) and time of day polish.
