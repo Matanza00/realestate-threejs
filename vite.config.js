@@ -2,6 +2,8 @@ import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
 
 export default defineConfig({
+  // Relative asset paths so the build works from any folder or host.
+  base: './',
   build: {
     rollupOptions: {
       input: {

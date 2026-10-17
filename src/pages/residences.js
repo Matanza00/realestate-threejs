@@ -33,7 +33,7 @@ const views = {
         ${planSvg(u.plan)}
         <p class="price">${AED(u.price)}</p>
         <p class="meta"><span>${AED(Math.round(u.price / u.area))} per m²</span><span>Handover Q4 2028</span></p>
-        <a class="cta" href="/contact.html?topic=buy&unit=${u.id}">Request details</a>
+        <a class="cta" href="contact.html?topic=buy&unit=${u.id}">Request details</a>
       </article>`,
     ).join(''),
   rent: () =>
@@ -43,7 +43,7 @@ const views = {
         <div class="meta"><span>${u.beds} bed</span><span>${u.area} m²</span><span>${u.view}</span><span>Fully furnished</span></div>
         ${planSvg(u.plan)}
         <table><tr><th>Monthly</th><td>${AED(u.month)}</td></tr><tr><th>Nightly</th><td>${AED(u.night)}</td></tr><tr><th>Yearly (2 cheques)</th><td>${AED(u.month * 11)}</td></tr></table>
-        <a class="cta" href="/contact.html?topic=rent&unit=${u.id}">Book a viewing</a>
+        <a class="cta" href="contact.html?topic=rent&unit=${u.id}">Book a viewing</a>
       </article>`,
     ).join(''),
   halls: () =>
@@ -53,7 +53,7 @@ const views = {
         <div class="meta"><span>${h.seated} seated</span>${h.standing ? `<span>${h.standing} standing</span>` : ''}</div>
         <ul>${h.features.map((f) => `<li>${f}</li>`).join('')}</ul>
         <p class="price" style="margin-top:14px">${AED(h.day)} <small style="font-size:0.9rem;color:var(--muted)">per day</small></p>
-        <a class="cta" href="/contact.html?topic=hall&hall=${encodeURIComponent(h.name)}">Check dates</a>
+        <a class="cta" href="contact.html?topic=hall&hall=${encodeURIComponent(h.name)}">Check dates</a>
       </article>`,
     ).join(''),
 };
